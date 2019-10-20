@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.1.2",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -29,7 +31,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
