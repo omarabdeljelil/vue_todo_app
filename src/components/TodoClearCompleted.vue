@@ -1,22 +1,18 @@
 <template>
-    <button v-if="showClearCompletedButton" @click="clearCompleted()">Clear completed</button>
+    <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
 </template>
 
-
 <script>
-    import {eventBus} from "../main";
-
     export default {
         name: 'todo-clear-completed',
-        props: {
-            showClearCompletedButton: {
-                type: Boolean,
-                required: true
+        computed: {
+            showClearCompletedButton() {
+                return this.$store.getters.showClearCompletedButton
             }
         },
-        methods:{
-            clearCompleted(){
-                eventBus.$emit('clearCompletedTodos')
+        methods: {
+            clearCompleted() {
+                this.$store.dispatch('clearCompleted')
             }
         }
     }
