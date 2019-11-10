@@ -64,18 +64,18 @@
             }
         },
         created() {
-            eventBus.$on('removedTodo', (index) => this.removeTodo(index))
-            eventBus.$on('finishedEdit', (data) => this.finishedEdit(data))
-            eventBus.$on('checkAllChanged', (checked) => this.checkAllTodos(checked))
-            eventBus.$on('filterChanged', (filter) => this.filter = filter)
-            eventBus.$on('clearCompletedTodos', () => this.clearCompleted())
+            eventBus.$on('removedTodo', (index) => this.removeTodo(index));
+            eventBus.$on('finishedEdit', (data) => this.finishedEdit(data));
+            eventBus.$on('checkAllChanged', (checked) => this.checkAllTodos(checked));
+            eventBus.$on('filterChanged', (filter) => this.filter = filter);
+            eventBus.$on('clearCompletedTodos', () => this.clearCompleted());
         },
         beforeDestroy() {
-            eventBus.$off('removedTodo', (index) => this.removeTodo(index))
-            eventBus.$off('finishedEdit', (data) => this.finishedEdit(data))
-            eventBus.$off('checkAllChanged', (checked) => this.checkAllTodos(checked))
-            eventBus.$off('filterChanged', (filter) => this.filter = filter)
-            eventBus.$off('clearCompletedTodos', () => this.clearCompleted())
+            eventBus.$off('removedTodo');
+            eventBus.$off('finishedEdit');
+            eventBus.$off('checkAllChanged');
+            eventBus.$off('filterChanged');
+            eventBus.$off('clearCompletedTodos');
         },
         computed: {
             remaining() {
