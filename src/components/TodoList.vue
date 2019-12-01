@@ -1,7 +1,8 @@
 <template>
     <div>
         <img src="../assets/logo.png" alt="" class="logo">
-        <input type="text" class="todo-input" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo">
+        <input type="text" class="todo-input" placeholder="What needs to be done" v-model="newTodo"
+               @keyup.enter="addTodo">
         <transition-group name="fade" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
             <todo-item v-for="todo in todosFiltered" :key="todo.id" :todo="todo" :checkAll="!anyRemaining">
             </todo-item>
@@ -30,6 +31,7 @@
     import TodoCheckAll from './TodoCheckAll'
     import TodoFiltered from './TodoFiltered'
     import TodoClearCompleted from './TodoClearCompleted'
+
     export default {
         name: 'todo-list',
         components: {
@@ -44,6 +46,9 @@
                 newTodo: '',
                 idForTodo: 3,
             }
+        },
+        created() {
+            this.$store.dispatch('retrieveTodos')
         },
         computed: {
             anyRemaining() {
@@ -77,15 +82,18 @@
         margin: 10px auto;
         height: 100px;
     }
+
     .todo-input {
         width: 100%;
         padding: 10px 18px;
         font-size: 18px;
         margin-bottom: 16px;
+
         &:focus {
             outline: 0;
         }
     }
+
     .todo-item {
         margin-bottom: 12px;
         display: flex;
@@ -93,22 +101,27 @@
         justify-content: space-between;
         animation-duration: 0.3s;
     }
+
     .remove-item {
         cursor: pointer;
         margin-left: 14px;
+
         &:hover {
             color: black;
         }
     }
+
     .todo-item-left {
         display: flex;
         align-items: center;
     }
+
     .todo-item-label {
         padding: 10px;
         border: 1px solid white;
         margin-left: 12px;
     }
+
     .todo-item-edit {
         font-size: 24px;
         color: #2c3e50;
@@ -117,14 +130,17 @@
         padding: 10px;
         border: 1px solid #ccc; //override defaults
         font-family: "Avenir", Helvetica, Arial, sans-serif;
+
         &:focus {
             outline: none;
         }
     }
+
     .completed {
         text-decoration: line-through;
         color: grey;
     }
+
     .extra-container {
         display: flex;
         align-items: center;
@@ -134,25 +150,31 @@
         padding-top: 14px;
         margin-bottom: 14px;
     }
+
     button {
         font-size: 14px;
         background-color: white;
         appearance: none;
+
         &:hover {
             background: lightgreen;
         }
+
         &:focus {
             outline: none;
         }
     }
+
     .active {
         background: lightgreen;
     }
+
     // CSS Transitions
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity 0.2s;
     }
+
     .fade-enter,
     .fade-leave-to {
         opacity: 0;
